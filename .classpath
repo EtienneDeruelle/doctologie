@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="lib/httpclient-cache-4.5.3.jar"/>
+	<classpathentry kind="lib" path="lib/httpclient-win-4.5.3.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="lib/httpmime-4.5.3.jar"/>
+	<classpathentry kind="lib" path="lib/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jna-platform-4.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/lightcouch-0.1.8.jar"/>
+	<classpathentry kind="lib" path="lib/lucene-analyzers-common-6.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/lucene-core-6.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/lucene-demo-6.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/lucene-queryparser-6.4.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
