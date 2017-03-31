@@ -49,9 +49,9 @@ import org.apache.lucene.store.FSDirectory;
  * This is a command-line application demonstrating simple Lucene indexing.
  * Run it with no command-line arguments for usage information.
  */
-public class IndexFiles {
+public class IndexFilesATC {
 	   
-	   private IndexFiles() {}
+	   private IndexFilesATC() {}
 	 
 	   /** Index all text files under a directory.
 	 * @throws IOException */

@@ -22,9 +22,9 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 
 /** Simple command-line based search demo. */
-public class SearchFiles {
+public class SearchFilesOmim {
 
-  private SearchFiles() {}
+  private SearchFilesOmim() {}
 
   /** Simple command-line based search demo. */
   public static void main(String[] args) throws Exception {
