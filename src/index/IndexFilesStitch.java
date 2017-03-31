@@ -57,7 +57,7 @@ public class IndexFilesStitch {
 	 * @throws IOException */
 	   public static void main(String[] args) throws IOException {
 	    
-	     String indexPath = "index";
+	     String indexPath = "indexStitch";
 	     String dbPath = "./omim.txt";//"./drugbank.txt";
 
 	    

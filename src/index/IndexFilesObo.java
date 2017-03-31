@@ -57,7 +57,7 @@ public class IndexFilesObo {
 	 * @throws IOException */
 	   public static void main(String[] args) throws IOException {
 	    
-	     String indexPath = "index";
+	     String indexPath = "indexObo";
 	     String dbPath = "./omim.txt";//"./drugbank.txt";
 
 	    

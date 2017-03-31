@@ -30,7 +30,7 @@ public class SearchFilesOmim {
   public static void main(String[] args) throws Exception {
    
 
-    String index = "index";
+    String index = "indexOmim";
     String field = "NO";
     URI queries = null;
     int repeat = 0;

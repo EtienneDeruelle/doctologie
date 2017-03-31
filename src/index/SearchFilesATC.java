@@ -30,7 +30,7 @@ public class SearchFilesATC {
   public static void main(String[] args) throws Exception {
    
 
-    String index = "index";
+    String index = "indexATC";
     String field = "NO";
     URI queries = null;
     int repeat = 0;

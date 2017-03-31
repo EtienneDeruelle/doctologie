@@ -57,7 +57,7 @@ public class IndexFilesATC {
 	 * @throws IOException */
 	   public static void main(String[] args) throws IOException {
 	    
-	     String indexPath = "index";
+	     String indexPath = "indexATC";
 	     String dbPath = "./omim.txt";//"./drugbank.txt";
 
 	    
