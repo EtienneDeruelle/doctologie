@@ -19,33 +19,28 @@ package index;
 
 
 
+
+
+
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.document.LongPoint;
 import org.apache.lucene.document.StoredField;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
@@ -100,50 +95,51 @@ public class IndexFiles {
 
 
 /**
-   * Indexes the given file using the given writer, or if a directory is given,
-   * recurses over files and directories found under the given directory.
-   * 
-   * NOTE: This method indexes one document per input file.  This is slow.  For good
-   * throughput, put multiple documents into your input file(s).  An example of this is
-   * in the benchmark module, which can create "line doc" files, one document per line,
-   * using the
-   * <a href="../../../../../contrib-benchmark/org/apache/lucene/benchmark/byTask/tasks/WriteLineDocTask.html"
-   * >WriteLineDocTask</a>.
-   *  
-   * @param writer Writer to the index where the given file/dir info will be stored
-   * @param path The file to index, or the directory to recurse into to find files to index
-   * @throws IOException If there is a low-level I/O error
+* Indexes the given file using the given writer, or if a directory is given,
+* recurses over files and directories found under the given directory.
+* 
+* NOTE: This method indexes one document per input file.  This is slow.  For good
+* throughput, put multiple documents into your input file(s).  An example of this is
+* in the benchmark module, which can create "line doc" files, one document per line,
+* using the
+* <a href="../../../../../contrib-benchmark/org/apache/lucene/benchmark/byTask/tasks/WriteLineDocTask.html"
+* >WriteLineDocTask</a>.
+*  
+* @param writer Writer to the index where the given file/dir info will be stored
+* @param path The file to index, or the directory to recurse into to find files to index
+* @throws IOException If there is a low-level I/O error
 
-  /** Indexes a single document */
+/** Indexes a single document */
 	   static void indexDoc(IndexWriter writer, File file) throws IOException {
-    
-      
-      InputStream stream = new FileInputStream(file);
-      InputStreamReader ipsr = new InputStreamReader(stream);
-      BufferedReader br = new BufferedReader(ipsr);
-      String line = null;
-      Document doc = null;
+ 
+   
+   InputStream stream = new FileInputStream(file);
+   InputStreamReader ipsr = new InputStreamReader(stream);
+   BufferedReader br = new BufferedReader(ipsr);
+   String line = null;
+   Document doc = null;
 
-      while((line=br.readLine())!=null){
+   while((line=br.readLine())!=null){
 
-          if(line.startsWith("*FIELD* NO")){
-              doc = new Document();
-              String NO = "";
-              NO=br.readLine();
-              System.out.println(NO);
-              doc.add(new StoredField("NO", NO));
-          }
-          
-          if(line.startsWith("*FIELD* TI")){
-              
-              String name = "";
-              //System.out.println("Jusqu'ici tout va bien");
-              while (!((line=br.readLine()).equals("*FIELD* TX"))){
+	   if(line.startsWith("*FIELD* NO")){
+           doc = new Document();
+           String NO = "";
+           NO=br.readLine();
+           System.out.println(NO);
+           doc.add(new TextField("NO", NO, Field.Store.YES));
+       }
+       
+       if(line.startsWith("*FIELD* TI")){
+           
+           String name = "";
+           //System.out.println("Jusqu'ici tout va bien");
+           while (!((line=br.readLine()).equals("*FIELD* TX"))){
 			    	name=name+line;
 			    }
-              System.out.println(name);
-              doc.add(new TextField("name", name, Field.Store.NO));
-          }
+           System.out.println(name);
+           doc.add(new TextField("TI", name, Field.Store.YES));
+           writer.addDocument(doc);
+       }
 	 	if(line.startsWith("# Brand_Names:")){
 			              
 			              String name = "";
@@ -151,6 +147,8 @@ public class IndexFiles {
 			              System.out.println(name);
 			              doc.add(new TextField("Brand_Names", name, Field.Store.NO));
 	 	}
+	 	
+	 	
 		if(line.startsWith("# Description:")){
 			    
 			    String name = "";
@@ -185,17 +183,17 @@ public class IndexFiles {
 		    System.out.println(name);
 		    doc.add(new TextField("Drug_Interactions", name, Field.Store.NO));
 		}
-          /*
-           * ...
-           */
-          if(line.startsWith("#END_")){
-              writer.addDocument(doc);                
-          }
+       /*
+        * ...
+        */
+       if(line.startsWith("#END_")){
+           writer.addDocument(doc);                
+       }
 
-      }
-         
+   }
       
-    
-    
-  }
+   
+ 
+ 
+}
 }

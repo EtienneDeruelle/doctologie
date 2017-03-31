@@ -3,6 +3,7 @@ package index;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,7 +32,7 @@ public class SearchFiles {
 
     String index = "index";
     String field = "NO";
-    String queries = null;
+    URI queries = null;
     int repeat = 0;
     boolean raw = false;
     String queryString = null;
@@ -42,11 +43,7 @@ public class SearchFiles {
     Analyzer analyzer = new StandardAnalyzer();
 
     BufferedReader in = null;
-    if (queries != null) {
-      in = Files.newBufferedReader(Paths.get(queries), StandardCharsets.UTF_8);
-    } else {
-      in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
-    }
+    in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
     QueryParser parser = new QueryParser(field, analyzer);
     while (true) {
       if (queries == null && queryString == null) {                        // prompt the user
@@ -133,6 +130,7 @@ public class SearchFiles {
         if (NO != null) {
           System.out.println((i+1) + ". " + NO);
           String TI = doc.get("TI");
+          //System.out.println(TI);
           if (TI != null) {
             System.out.println("   TI: " + doc.get("TI"));
           }
