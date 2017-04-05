@@ -18,6 +18,7 @@ public class ConnectionCouchDB {
 		}else{
 			return connectionCouchDb;
 		}
+		
 	}
 	
 	
