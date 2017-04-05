@@ -120,76 +120,34 @@ public class IndexFilesObo {
    Document doc = null;
 
    while((line=br.readLine())!=null){
+       //System.out.println(line);
 
-	   if(line.startsWith("*FIELD* NO")){
+	   
+	   if(line.startsWith("id")){
            doc = new Document();
-           String NO = "";
-           NO=br.readLine();
-           System.out.println(NO);
-           doc.add(new TextField("NO", NO, Field.Store.YES));
+           String id = "";
+           id=line.substring(4, 14);
+           System.out.println(id);
+           doc.add(new TextField("id", id, Field.Store.YES));
        }
        
-       if(line.startsWith("*FIELD* TI")){
+       if(line.startsWith("name")){
            
-           String name = "";
-           //System.out.println("Jusqu'ici tout va bien");
-           while (!((line=br.readLine()).equals("*FIELD* TX"))){
-			    	name=name+line;
-			    }
-           System.out.println(name);
-           doc.add(new TextField("TI", name, Field.Store.YES));
-           writer.addDocument(doc);
+    	   String name = "";
+		   name=line.substring(5);
+		   System.out.println(name);
+           doc.add(new TextField("name", name, Field.Store.YES));
+         
        }
-	 	if(line.startsWith("# Brand_Names:")){
-			              
-			              String name = "";
-			              name=br.readLine();
-			              System.out.println(name);
-			              doc.add(new TextField("Brand_Names", name, Field.Store.NO));
-	 	}
-	 	
-	 	
-		if(line.startsWith("# Description:")){
-			    
-			    String name = "";
-			    while (!((line=br.readLine()).isEmpty())){
-			    	name=name+line;
-			    }
-			    System.out.println(name);
-			    doc.add(new TextField("Description", name, Field.Store.NO));
-		}
-		if(line.startsWith("# Indication:")){
-		    
-		    String name = "";
-		    while (!(br.readLine()!="")){
-		    	name=name+br.readLine();
-		    }
-		    System.out.println(name);
-		    doc.add(new TextField("Indication", name, Field.Store.NO));
-		}
-		if(line.startsWith("# Pharmacology:")){
-		    
-		    String name = "";
-		    name=br.readLine();
-		    System.out.println(name);
-		    doc.add(new TextField("Pharmacology", name, Field.Store.NO));
-		}
-		if(line.startsWith("# Drug_Interactions:")){
-		    
-		    String name = "";
-		    while (!((line=br.readLine()).isEmpty())){
-		    	name=name+line;
-		    }
-		    System.out.println(name);
-		    doc.add(new TextField("Drug_Interactions", name, Field.Store.NO));
-		}
-       /*
-        * ...
-        */
-       if(line.startsWith("#END_")){
-           writer.addDocument(doc);                
+       if(line.startsWith("def:")){
+		   String def = "";
+           def=line.substring(4);
+           System.out.println(def);
+           doc.add(new TextField("def", def, Field.Store.YES));   
        }
-
+       if(line.startsWith("xref")){
+    	   writer.addDocument(doc);
+       }
    }
       
    

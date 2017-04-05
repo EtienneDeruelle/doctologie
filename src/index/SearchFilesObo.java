@@ -31,7 +31,7 @@ public class SearchFilesObo {
    
 
     String index = "indexObo";
-    String field = "NO";
+    String field = "id";
     URI queries = null;
     int repeat = 0;
     boolean raw = false;
@@ -126,17 +126,18 @@ public class SearchFilesObo {
         }
 
         Document doc = searcher.doc(hits[i].doc);
-        String NO = doc.get("NO");
-        if (NO != null) {
-          System.out.println((i+1) + ". " + NO);
-          String TI = doc.get("TI");
+        String id = doc.get("id");
+        String name = doc.get("name");
+        if (id != null) {
+          System.out.println((i+1) + ". " + id);
+          
           //System.out.println(TI);
-          if (TI != null) {
-            System.out.println("   TI: " + doc.get("TI"));
+          if (name != null) {
+            System.out.println("   name: " + doc.get("name"));
           }
-          String CS = doc.get("CS");
-          if (CS != null) {
-              System.out.println("   CS: " + doc.get("CS"));
+          String def = doc.get("def");
+          if (def != null) {
+              System.out.println("  def: " + doc.get("def"));
             }
         } else {
           System.out.println((i+1) + ". " + "No drug with this name");
