@@ -58,7 +58,7 @@ public class IndexFilesATC {
 	   public static void main(String[] args) throws IOException {
 	    
 	     String indexPath = "indexATC";
-	     String dbPath = "./omim.txt";//"./drugbank.txt";
+	     String dbPath = "./kegg3.keg";//"./drugbank.txt";
 
 	    
 	 
@@ -118,7 +118,7 @@ public class IndexFilesATC {
    BufferedReader br = new BufferedReader(ipsr);
    String line = null;
    Document doc = null;
-
+   
    while((line=br.readLine())!=null){
 
 	   if(line.startsWith("*FIELD* NO")){

@@ -31,7 +31,7 @@ public class SearchFilesOmim {
    
 
     String index = "indexOmim";
-    String field = "NO";
+    String field = "TI";
     URI queries = null;
     int repeat = 0;
     boolean raw = false;
@@ -126,15 +126,16 @@ public class SearchFilesOmim {
         }
 
         Document doc = searcher.doc(hits[i].doc);
-        String NO = doc.get("NO");
-        if (NO != null) {
-          System.out.println((i+1) + ". " + NO);
-          String TI = doc.get("TI");
-          //System.out.println(TI);
-          if (TI != null) {
-            System.out.println("   TI: " + doc.get("TI"));
+        String TI = doc.get("TI");
+        if (TI != null) {
+          System.out.println((i+1) + ". " + TI);
+          String DESC = doc.get("DESC");
+          System.out.println(DESC);
+          if (DESC != null) {
+            System.out.println("   DESC: " + doc.get("DESC"));
           }
           String CS = doc.get("CS");
+          System.out.println(CS);
           if (CS != null) {
               System.out.println("   CS: " + doc.get("CS"));
             }
