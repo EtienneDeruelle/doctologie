@@ -4,15 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
 
-
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
 public class ButtonWindow extends JPanel {
-	/*
-	private ButtonConnexion boutonA = new ButtonConnexion("");
-	private ButtonOffline boutonO = new ButtonOffline("");
-	private ButtonDL boutonD = new ButtonDL();
+	
+	private ButtonIndex boutonA = new  ButtonIndex();
+	private JButton boutonO = new JButton("");
+	private JButton boutonD = new JButton("");
 	
 	
 	public ButtonWindow () throws IOException {
@@ -25,24 +25,24 @@ public class ButtonWindow extends JPanel {
 		
 		SectionB.setLayout(new GridLayout(6,1));
 		SectionB.add(boutonA);
-		SectionB.add(boutonO);
-		SectionB.add(boutonD);
+		//SectionB.add(boutonO);
+		//SectionB.add(boutonD);
 		
 		SectionB.setOpaque(false);
 		SectionB.setVisible(true);
 	}
 	
-	public ButtonConnexion getBoutonA() {
+	public JButton getBoutonA() {
 		return boutonA;
 	}
 
-	public ButtonOffline getBoutonO() {
+	public JButton getBoutonO() {
 		return boutonO;
 	}
 
-	public ButtonDL getBoutonD() {
+	public JButton getBoutonD() {
 		return boutonD;
 	}
 	
-	*/
+	
 }

@@ -55,7 +55,7 @@ public class IndexFilesATC {
 	 
 	   /** Index all text files under a directory.
 	 * @throws IOException */
-	   public static void main(String[] args) throws IOException {
+	   public static void main2(String[] args) throws IOException {
 	    
 	     String indexPath = "indexATC";
 	     String dbPath = "./kegg3.keg";//"./drugbank.txt";
