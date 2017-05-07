@@ -16,7 +16,7 @@ import sqlite.SQLiteRequest;
 public class Main {
 
 	public static void main(String[] args) {
-		SQLiteRequest.requestByIdDisease(14);
+		
 		
 		
 		
