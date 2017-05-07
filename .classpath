@@ -14,5 +14,14 @@
 	<classpathentry kind="lib" path="lib/lucene-core-6.4.1.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-demo-6.4.1.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-queryparser-6.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.10-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.10-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.10-test-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.10-tests.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/gson-1.6.jar"/>
+	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.16.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
