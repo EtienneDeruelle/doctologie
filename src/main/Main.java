@@ -5,10 +5,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.lightcouch.CouchDbClient;
 
 import connection.ConnectionCouchDB;
+import connection.ConnectionMySQL;
+import connection.SearchCouchDB;
+import connection.SearchHPO_Annotation;
+import connection.SearchSider;
 /*
 import connection.ConnectionSQLite;
 import sqlite.SQLiteRequest;
@@ -17,19 +22,20 @@ import display.MainWindow;
 
 
 public class Main {
-<<<<<<< HEAD
-
-	public static void main(String[] args) {
-		
-		
-=======
 	
 	private static MainWindow window ;
 	
 	public static void main(String[] args) throws IOException {
 		//SQLiteRequest.requestByIdDisease(14);
->>>>>>> 292f03d9f5fed9f59dc5d7b751858bf127cf51cb
 		
+		// test avec couchDB
+		System.out.println(" on a passé la connection");
+		CouchDbClient co = ConnectionCouchDB.getConnectionCouchDB();
+		ArrayList<String> signs = new ArrayList<>();
+		signs.add("dry eyes");
+		signs.add("Xerophthalmia");
+		SearchCouchDB.getDiseaseBySign(signs);
+		co.shutdown();
 		window = new MainWindow();
 		
 	}
