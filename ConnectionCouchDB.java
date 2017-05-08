@@ -1,4 +1,3 @@
-
 package connection;
 
 import org.lightcouch.CouchDbClient;
