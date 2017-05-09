@@ -30,12 +30,10 @@ public class Main {
 		
 		// test avec couchDB
 		System.out.println(" on a passé la connection");
-		CouchDbClient co = ConnectionCouchDB.getConnectionCouchDB();
 		ArrayList<String> signs = new ArrayList<>();
 		signs.add("dry eyes");
 		signs.add("Xerophthalmia");
 		SearchCouchDB.getDiseaseBySign(signs);
-		co.shutdown();
 		window = new MainWindow();
 		
 	}
