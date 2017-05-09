@@ -34,7 +34,7 @@ public class SearchFilesStitch {
    
 
     String index = "indexStitch";
-    String field = "NO";
+    String field = "A";
     URI queries = null;
     int repeat = 0;
     boolean raw = false;
@@ -129,23 +129,22 @@ public class SearchFilesStitch {
         }
 
         Document doc = searcher.doc(hits[i].doc);
-        String NO = doc.get("NO");
-        if (NO != null) {
-          System.out.println((i+1) + ". " + NO);
-          String TI = doc.get("TI");
+ String id = doc.get("A");
+        
+        if (id != null) {
+          System.out.println((i+1) + ". " + id);
+          
           //System.out.println(TI);
-          if (TI != null) {
-            System.out.println("   TI: " + doc.get("TI"));
+          String name = doc.get("D");
+          
+          if (name != null) {
+            System.out.println("   name: " + doc.get("D"));
           }
-          String CS = doc.get("CS");
-          if (CS != null) {
-              System.out.println("   CS: " + doc.get("CS"));
-            }
           
           ArrayList<String> supplierNames = new ArrayList<String>();
-          supplierNames.add(NO);
-          supplierNames.add(TI);
-          supplierNames.add(CS);
+          supplierNames.add(id);
+          supplierNames.add(name);
+
           Resultlist.add(supplierNames);
           
           

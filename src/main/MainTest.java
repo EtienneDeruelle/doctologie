@@ -58,8 +58,8 @@ public class MainTest {
 		
 		//SearchOmim.main2(line);
 		//SearchObo.main2(line);
-		SearchATC.main2(line);
-		//SearchStitch.main2(line);
+		//SearchATC.main2(line);
+		SearchStitch.main2(line);
 		
 		System.out.println("/////////////" + SearchObo.getResultlist().size() );
 		
@@ -82,6 +82,13 @@ public class MainTest {
 		{
 			//System.out.println(SearchObo.getResultlist().get(i).get(0) );
 			System.out.println(SearchATC.getResultlist().get(i).get(0) );
+			
+		}
+		
+		for(int i = 1; i <= SearchStitch.getResultlist().size()-1; i++)
+		{
+			//System.out.println(SearchObo.getResultlist().get(i).get(0) );
+			System.out.println(SearchStitch.getResultlist().get(i).get(0) );
 			
 		}
 		

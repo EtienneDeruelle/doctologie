@@ -5,3 +5,4 @@
 *.obo
 *.tsv
 *.tsv#
+.classpath

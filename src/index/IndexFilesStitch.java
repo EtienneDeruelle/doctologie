@@ -44,6 +44,10 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
 /** Index all text files under a directory.
  * <p>
  * This is a command-line application demonstrating simple Lucene indexing.
@@ -54,14 +58,18 @@ public class IndexFilesStitch {
 	   private IndexFilesStitch() {}
 	 
 	   /** Index all text files under a directory.
-	 * @throws IOException */
-	   public static void main2(String[] args) throws IOException {
+	 * @throws IOException 
+	 * @throws BiffException 
+	 * @throws IndexOutOfBoundsException */
+	   public static void main(String[] args) throws IOException, IndexOutOfBoundsException, BiffException {
 	    
 	     String indexPath = "indexStitch";
-	     String dbPath = "./omim.txt";//"./drugbank.txt";
+	     String dbPath = "./chemical.sources.v5.0a.xls";//"./drugbank.txt";
 
-	    
+
+	     //Sheet contentSheet = Workbook.getWorkbook(new File(filePath)).getSheet(0);
 	 
+	     
 	     final File dbFile = new File(dbPath);
 	     if (!dbFile.exists()) {
 	       System.out.println("the db file '" +dbFile.getCanonicalPath()+ "' does not exist or is not readable, please check the path");
@@ -120,80 +128,32 @@ public class IndexFilesStitch {
    Document doc = null;
 
    while((line=br.readLine())!=null){
-
-	   if(line.startsWith("*FIELD* NO")){
-           doc = new Document();
-           String NO = "";
-           NO=br.readLine();
-           System.out.println(NO);
-           doc.add(new TextField("NO", NO, Field.Store.YES));
+	   //System.out.println(line);
+	   
+	   if((line.startsWith("CI"))){
+		   //System.out.println(line);
+		   if (line.contains("ATC")) {
+			   //System.out.println(line);
+	           doc = new Document();
+	           String id = "";
+	           id=line.substring(4, 12);
+	           //System.out.println(id);
+	           doc.add(new TextField("A", id, Field.Store.YES));
+	        }
        }
        
-       if(line.startsWith("*FIELD* TI")){
-           
-           String name = "";
-           //System.out.println("Jusqu'ici tout va bien");
-           while (!((line=br.readLine()).equals("*FIELD* TX"))){
-			    	name=name+line;
-			    }
-           System.out.println(name);
-           doc.add(new TextField("TI", name, Field.Store.YES));
-           writer.addDocument(doc);
-       }
-	 	if(line.startsWith("# Brand_Names:")){
-			              
-			              String name = "";
-			              name=br.readLine();
-			              System.out.println(name);
-			              doc.add(new TextField("Brand_Names", name, Field.Store.NO));
-	 	}
-	 	
-	 	
-		if(line.startsWith("# Description:")){
-			    
-			    String name = "";
-			    while (!((line=br.readLine()).isEmpty())){
-			    	name=name+line;
-			    }
-			    System.out.println(name);
-			    doc.add(new TextField("Description", name, Field.Store.NO));
-		}
-		if(line.startsWith("# Indication:")){
-		    
-		    String name = "";
-		    while (!(br.readLine()!="")){
-		    	name=name+br.readLine();
-		    }
-		    System.out.println(name);
-		    doc.add(new TextField("Indication", name, Field.Store.NO));
-		}
-		if(line.startsWith("# Pharmacology:")){
-		    
-		    String name = "";
-		    name=br.readLine();
-		    System.out.println(name);
-		    doc.add(new TextField("Pharmacology", name, Field.Store.NO));
-		}
-		if(line.startsWith("# Drug_Interactions:")){
-		    
-		    String name = "";
-		    while (!((line=br.readLine()).isEmpty())){
-		    	name=name+line;
-		    }
-		    System.out.println(name);
-		    doc.add(new TextField("Drug_Interactions", name, Field.Store.NO));
-		}
-       /*
-        * ...
-        */
-       if(line.startsWith("#END_")){
-           writer.addDocument(doc);                
-       }
+	   if((line.startsWith("CI"))){
+		   if (line.contains("ATC")) {
+	    	   String name = "";
+			   name=line.substring(30,line.length());
+			   System.out.println(name);
+	           doc.add(new TextField("D", name, Field.Store.YES));
+	           writer.addDocument(doc);
+		   }
+         
+       	}
+ 
+   	}
+ }
 
-   }
-      
-   
- 
- 
-}
 }
