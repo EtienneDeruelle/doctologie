@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.text.BadLocationException;
 
 import index.IndexFilesATC;
 import index.IndexFilesObo;
@@ -57,6 +58,12 @@ public class ButtonIndex extends JButton {
 				try {
 					IndexStitch.main2(null);
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IndexOutOfBoundsException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (BadLocationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

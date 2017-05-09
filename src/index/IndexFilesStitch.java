@@ -32,6 +32,8 @@ import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.Date;
 
+import javax.swing.text.BadLocationException;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.StoredField;
@@ -44,9 +46,6 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 /** Index all text files under a directory.
  * <p>
@@ -61,7 +60,7 @@ public class IndexFilesStitch {
 	 * @throws IOException 
 	 * @throws BiffException 
 	 * @throws IndexOutOfBoundsException */
-	   public static void main(String[] args) throws IOException, IndexOutOfBoundsException, BiffException {
+	   public static void main2(String[] args) throws IOException, IndexOutOfBoundsException, BadLocationException {
 	    
 	     String indexPath = "indexStitch";
 	     String dbPath = "./chemical.sources.v5.0a.xls";//"./drugbank.txt";
