@@ -107,8 +107,20 @@ public class MainSearch {
 			diseasesOmim.add(listDiseases.get(i).get(0));
 			
 		}
+		ArrayList<String> diseasesOmimClean = new ArrayList<String>();
+		ArrayList<String> diseasesOrphadataClean = new ArrayList<String>();
 		
-		DiseasesCollection dc = new DiseasesCollection(diseasesOmim,diseasesOrphadata);
+		for(int i = 0; i<diseasesOmim.size(); i++)
+		{
+			if(!diseasesOmimClean.contains(diseasesOmim.get(i)))
+				diseasesOmimClean.add(diseasesOmim.get(i));
+		}
+		for(int i = 0; i<diseasesOrphadata.size(); i++)
+		{
+			if(!diseasesOrphadataClean.contains(diseasesOrphadata.get(i)))
+				diseasesOrphadataClean.add(diseasesOrphadata.get(i));
+		}
+		DiseasesCollection dc = new DiseasesCollection(diseasesOmimClean,diseasesOrphadataClean);
 		return dc;
 	}
 	
