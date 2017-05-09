@@ -7,6 +7,7 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -26,8 +27,11 @@ public class SearchFilesStitch {
 
   private SearchFilesStitch() {}
 
+
+  static ArrayList<ArrayList<String>> Resultlist = new ArrayList<ArrayList<String>>();
+  
   /** Simple command-line based search demo. */
-  public static void main(String[] args) throws Exception {
+  public static void main2(String request)throws Exception {
    
 
     String index = "indexStitch";
@@ -35,7 +39,7 @@ public class SearchFilesStitch {
     URI queries = null;
     int repeat = 0;
     boolean raw = false;
-    String queryString = null;
+    String queryString = request;
     int hitsPerPage = 10;
     
     IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
@@ -138,6 +142,14 @@ public class SearchFilesStitch {
           if (CS != null) {
               System.out.println("   CS: " + doc.get("CS"));
             }
+          
+          ArrayList<String> supplierNames = new ArrayList<String>();
+          supplierNames.add(NO);
+          supplierNames.add(TI);
+          supplierNames.add(CS);
+          Resultlist.add(supplierNames);
+          
+          
         } else {
           System.out.println((i+1) + ". " + "No drug with this name");
         }
@@ -188,6 +200,21 @@ public class SearchFilesStitch {
       }
     }
   }
+  
+
+
+public static ArrayList<ArrayList<String>> getResultlist() {
+	return Resultlist;
+}
+
+
+public static void setResultlist(ArrayList<ArrayList<String>> resultlist) {
+	Resultlist = resultlist;
+}
+  
+  
+  
+  
 }
 
 

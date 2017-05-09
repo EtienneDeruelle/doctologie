@@ -7,6 +7,7 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -25,8 +26,10 @@ import org.apache.lucene.store.FSDirectory;
 public class SearchFilesATC {
 
   private SearchFilesATC() {}
+  static ArrayList<ArrayList<String>> Resultlist = new ArrayList<ArrayList<String>>();
 
-  /** Simple command-line based search demo. */
+
+/** Simple command-line based search demo. */
   public static void main(String[] args) throws Exception {
    
 
@@ -36,7 +39,7 @@ public class SearchFilesATC {
     int repeat = 0;
     boolean raw = false;
     String queryString = null;
-    int hitsPerPage = 10;
+    int hitsPerPage = 100;
     
     IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
     IndexSearcher searcher = new IndexSearcher(reader);
@@ -188,6 +191,20 @@ public class SearchFilesATC {
       }
     }
   }
+  
+  
+  public static ArrayList<ArrayList<String>> getResultlist() {
+	return Resultlist;
+}
+
+public static void setResultlist(ArrayList<ArrayList<String>> resultlist) {
+	Resultlist = resultlist;
+}
+
+  
+  
+  
+  
 }
 
 

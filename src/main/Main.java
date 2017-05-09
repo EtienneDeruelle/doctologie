@@ -14,11 +14,13 @@ import connection.ConnectionMySQL;
 import connection.SearchCouchDB;
 import connection.SearchHPO_Annotation;
 import connection.SearchSider;
+import display.MainWindow;
+
 /*
 import connection.ConnectionSQLite;
 import sqlite.SQLiteRequest;
 */
-import display.MainWindow;
+
 
 
 public class Main {

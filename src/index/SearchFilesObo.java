@@ -7,6 +7,7 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -25,9 +26,11 @@ import org.apache.lucene.store.FSDirectory;
 public class SearchFilesObo {
 
   private SearchFilesObo() {}
+  
+  static ArrayList<ArrayList<String>> Resultlist = new ArrayList<ArrayList<String>>();
 
   /** Simple command-line based search demo. */
-  public static void main(String[] args) throws Exception {
+  public static void main2(String request) throws Exception {
    
 
     String index = "indexObo";
@@ -35,7 +38,7 @@ public class SearchFilesObo {
     URI queries = null;
     int repeat = 0;
     boolean raw = false;
-    String queryString = null;
+    String queryString = request;
     int hitsPerPage = 10;
     
     IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
@@ -127,11 +130,12 @@ public class SearchFilesObo {
 
         Document doc = searcher.doc(hits[i].doc);
         String id = doc.get("id");
-        String name = doc.get("name");
+        
         if (id != null) {
           System.out.println((i+1) + ". " + id);
           
           //System.out.println(TI);
+          String name = doc.get("name");
           if (name != null) {
             System.out.println("   name: " + doc.get("name"));
           }
@@ -139,6 +143,14 @@ public class SearchFilesObo {
           if (def != null) {
               System.out.println("  def: " + doc.get("def"));
             }
+          
+          ArrayList<String> supplierNames = new ArrayList<String>();
+          supplierNames.add(id);
+          supplierNames.add(name);
+          supplierNames.add(def);
+          Resultlist.add(supplierNames);
+          
+          
         } else {
           System.out.println((i+1) + ". " + "No drug with this name");
         }
@@ -189,6 +201,17 @@ public class SearchFilesObo {
       }
     }
   }
+  
+  
+  public static ArrayList<ArrayList<String>> getResultlist() {
+	return Resultlist;
+}
+
+  public static void setResultlist(ArrayList<ArrayList<String>> resultlist) {
+	Resultlist = resultlist;
+}
+
+  
 }
 
 
