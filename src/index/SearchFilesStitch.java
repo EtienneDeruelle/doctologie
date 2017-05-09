@@ -27,7 +27,6 @@ public class SearchFilesStitch {
 
   private SearchFilesStitch() {}
 
-
   static ArrayList<ArrayList<String>> Resultlist = new ArrayList<ArrayList<String>>();
   
   /** Simple command-line based search demo. */

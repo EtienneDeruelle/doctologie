@@ -123,10 +123,10 @@ public class IndexFilesObo {
        //System.out.println(line);
 
 	   
-	   if(line.startsWith("id")){
+	   if((line.startsWith("id"))){
            doc = new Document();
            String id = "";
-           id=line.substring(4, 14);
+           id=line.substring(7, 14);
            System.out.println(id);
            doc.add(new TextField("id", id, Field.Store.YES));
        }
@@ -136,12 +136,14 @@ public class IndexFilesObo {
     	   String name = "";
 		   name=line.substring(5);
 		   System.out.println(name);
+		   //line.substring(0,line.length()-15);
            doc.add(new TextField("name", name, Field.Store.YES));
          
        }
        if(line.startsWith("def:")){
 		   String def = "";
            def=line.substring(4);
+           def=def.substring(0,def.length()-15);
            System.out.println(def);
            doc.add(new TextField("def", def, Field.Store.YES));   
        }

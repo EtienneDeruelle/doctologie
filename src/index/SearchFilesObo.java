@@ -34,12 +34,12 @@ public class SearchFilesObo {
    
 
     String index = "indexObo";
-    String field = "id";
+    String field = "name";
     URI queries = null;
     int repeat = 0;
     boolean raw = false;
     String queryString = request;
-    int hitsPerPage = 10;
+    int hitsPerPage = 100;
     
     IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
     IndexSearcher searcher = new IndexSearcher(reader);
@@ -136,10 +136,12 @@ public class SearchFilesObo {
           
           //System.out.println(TI);
           String name = doc.get("name");
+          
           if (name != null) {
             System.out.println("   name: " + doc.get("name"));
           }
           String def = doc.get("def");
+         
           if (def != null) {
               System.out.println("  def: " + doc.get("def"));
             }
@@ -147,8 +149,11 @@ public class SearchFilesObo {
           ArrayList<String> supplierNames = new ArrayList<String>();
           supplierNames.add(id);
           supplierNames.add(name);
+          System.out.println(name);
           supplierNames.add(def);
+          System.out.println(def);
           Resultlist.add(supplierNames);
+          System.out.println(supplierNames);
           
           
         } else {

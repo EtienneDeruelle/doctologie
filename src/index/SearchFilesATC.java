@@ -30,7 +30,7 @@ public class SearchFilesATC {
 
 
 /** Simple command-line based search demo. */
-  public static void main(String[] args) throws Exception {
+  public static void main2(String request) throws Exception {
    
 
     String index = "indexATC";
@@ -38,7 +38,7 @@ public class SearchFilesATC {
     URI queries = null;
     int repeat = 0;
     boolean raw = false;
-    String queryString = null;
+    String queryString = request;
     int hitsPerPage = 100;
     
     IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
