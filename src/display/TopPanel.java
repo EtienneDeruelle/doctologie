@@ -14,10 +14,13 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.MainSearch;
+
 
 
 
 public class TopPanel extends JPanel {
+	MainSearch Searcher = null;
 	private GoButton GBut = new GoButton();
 	private ButTrans TransButG = new ButTrans();
 	private ButTrans TransButD = new ButTrans();
@@ -48,15 +51,11 @@ public class TopPanel extends JPanel {
 	                public void keyPressed(KeyEvent e){
 
 	                    if(e.getKeyChar() == KeyEvent.VK_ENTER){
-	                    	if (//AlmostLegalTube.isConnected()
-									true){
-								//new SearchWindow(textField.getText());
-							}
-							else{
-								/*
-								ArrayList<VideoOffline> listeVideo = OfflineSearch.searchOffline(AlmostLegalTube.getClient().getXMLPath(), textField.getText());
-								OfflineSearchWindow sw = new OfflineSearchWindow(listeVideo);
-								*/
+	                    	try {
+								MainSearch.main2(TopPanel.textField.getText());
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
 							}
 	                    }
 	                    else{

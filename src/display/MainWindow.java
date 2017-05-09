@@ -31,7 +31,7 @@ public class MainWindow extends JFrame {
 	public MainWindow () throws IOException {
 		
 		this.setResizable(false);
-		this.setTitle("AlmostLegalTube");
+		this.setTitle("Doctologie");
 		BufferedImage img = ImageIO.read(new File("Images/backgroundred.jpg"));
 		this.setIconImage(new ImageIcon("Images/IconRed.jpg").getImage());
 		this.setContentPane(new JLabel(new ImageIcon(img)));

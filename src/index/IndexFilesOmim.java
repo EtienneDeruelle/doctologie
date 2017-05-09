@@ -140,7 +140,7 @@ public class IndexFilesOmim {
 			    	name=name+line;
 			    }
            System.out.println(name);
-           doc.add(new TextField("TI", name, Field.Store.YES));
+           doc.add(new TextField("TI", name.substring(1), Field.Store.YES));
           
        }
 	 	if(line.startsWith("DESCRIPTION")){

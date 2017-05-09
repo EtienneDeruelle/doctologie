@@ -8,8 +8,13 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+import main.MainSearch;
+
 
 public class GoButton extends JButton {
+	
+	MainSearch Searcher = null;
+	
 	public GoButton(){
 		super("GO");
 		this.setBackground(new Color(50,205,50));
@@ -18,15 +23,13 @@ public class GoButton extends JButton {
 		
 			this.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event) {
-					if (//AlmostLegalTube.isConnected()
-							true){
-						//new SearchWindow(TopPanel.textField.getText());
-						System.out.println(TopPanel.textField.getText());
-					} else {
-						/*
-						ArrayList<VideoOffline> listeVideo = OfflineSearch.searchOffline(AlmostLegalTube.getClient().getXMLPath(), TopPanel.textField.getText());
-						OfflineSearchWindow sw = new OfflineSearchWindow(listeVideo);
-						*/
+					//new SearchWindow(TopPanel.textField.getText());
+					System.out.println(TopPanel.textField.getText());
+					try {
+						MainSearch.main2(TopPanel.textField.getText());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
 			});
