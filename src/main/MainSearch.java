@@ -12,7 +12,10 @@ import java.util.ArrayList;
 
 import org.lightcouch.CouchDbClient;
 
+import business.DiseasesCollection;
 import connection.ConnectionCouchDB;
+import connection.SearchCouchDB;
+import connection.SearchHPO_Annotation;
 /*
 import connection.ConnectionSQLite;
 import sqlite.SQLiteRequest;
@@ -47,7 +50,7 @@ public class MainSearch {
 		
 		SearchObo.main2(request);
 		ResultlistObo = SearchObo.getResultlist();
-
+		
 		System.out.println(ResultlistObo);
 		//SearchOmim.main2(line);
 		//SearchObo.main2(line);
@@ -55,5 +58,59 @@ public class MainSearch {
 		//SearchStitch.main2(line);
 		
 	}
+	
+	public static DiseasesCollection searchDiseaseBySign(String request){
+		ArrayList<String> diseasesOrphadata = new ArrayList<String>();
+		ArrayList<ArrayList<String>> diseasesHPO = new ArrayList<ArrayList<String>>();
+		
+		// Orphadata
+		ArrayList<String> signs = new ArrayList<String>();
+		String[] listSigns = request.split(";");
+		for (int i = 0 ; i<listSigns.length ; i++){
+			signs.add(listSigns[i]);
+		}
+		diseasesOrphadata = SearchCouchDB.getDiseaseBySign(signs);
+		
+		// HPO
+		try {
+			SearchFilesObo.main2(request);
+			diseasesHPO = SearchFilesObo.getResultlist();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ArrayList<String> diseasesHPOClean = new ArrayList<String>();
+		for(int i = 0 ; i < diseasesHPO.size() ; i++){
+			if(!diseasesHPOClean.contains(diseasesHPO.get(i).get(0))){
+				diseasesHPOClean.add(diseasesHPO.get(i).get(0));
+			}
+		}
+
+		// HPO_annotations
+		ArrayList<String> listIdDiseases = new ArrayList<String>();
+		for(int i = 0 ; i < diseasesHPOClean.size() ; i++){
+			listIdDiseases.addAll(SearchHPO_Annotation.getIdDiseaseByIdSign("HP:"+diseasesHPOClean.get(i)));
+		}
+		
+		// OMIM
+		ArrayList<ArrayList<String>> listDiseases = new ArrayList<ArrayList<String>>();
+		for(int i = 0 ; i<listIdDiseases.size() ; i++){
+			try {
+				SearchFilesOmim.main2(listIdDiseases.get(i));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			listDiseases.addAll(SearchFilesOmim.getResultlist());
+		}
+		
+		ArrayList<String> diseasesOmim = new ArrayList<String>();
+		for(int i = 0 ; i< listDiseases.size() ; i++){
+			diseasesOmim.add(listDiseases.get(i).get(0));
+			
+		}
+		
+		DiseasesCollection dc = new DiseasesCollection(diseasesOmim,diseasesOrphadata);
+		return dc;
+	}
+	
 
 }

@@ -14,9 +14,9 @@ public class SearchHPO_Annotation {
 		ArrayList<String> listIdSign = new ArrayList<String>();
 		try {
 			Statement stmt = co.createStatement();
-			ResultSet res = stmt.executeQuery("SELECT disease_id FROM phenotype_annotation WHERE disease_id='"+idDisease+"';");
+			ResultSet res = stmt.executeQuery("SELECT DISTINCT sign_id FROM phenotype_annotation WHERE disease_id='"+idDisease+"';");
 			while(res.next()){
-				listIdSign.add(res.getString(0));
+				listIdSign.add(res.getString(1));
 			}
 			res.close();
 			stmt.close();
@@ -33,9 +33,9 @@ public class SearchHPO_Annotation {
 		ArrayList<String> listIdDisease = new ArrayList<String>();
 		try {
 			Statement stmt = co.createStatement();
-			ResultSet res = stmt.executeQuery("SELECT sign_id FROM phenotype_annotation WHERE sign_id='"+idSign+"';");
+			ResultSet res = stmt.executeQuery("SELECT DISTINCT disease_id FROM phenotype_annotation WHERE sign_id='"+idSign+"';");
 			while(res.next()){
-				listIdDisease.add(res.getString(0));
+				listIdDisease.add(res.getString(1));
 			}
 			res.close();
 			stmt.close();
@@ -43,6 +43,7 @@ public class SearchHPO_Annotation {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return listIdDisease;
 	}
 

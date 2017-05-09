@@ -30,12 +30,9 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		//SQLiteRequest.requestByIdDisease(14);
 		
-		// test avec couchDB
-		System.out.println(" on a passé la connection");
-		ArrayList<String> signs = new ArrayList<>();
-		signs.add("dry eyes");
-		signs.add("Xerophthalmia");
-		SearchCouchDB.getDiseaseBySign(signs);
+		MainSearch.searchDiseaseBySign("urine");
+		
+		
 		window = new MainWindow();
 		
 	}
