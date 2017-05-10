@@ -60,7 +60,7 @@ public class IndexFilesStitch {
 	 * @throws IOException 
 	 * @throws BiffException 
 	 * @throws IndexOutOfBoundsException */
-	   public static void main(String[] args) throws IOException, IndexOutOfBoundsException, BadLocationException {
+	   public static void main2(String[] args) throws IOException, IndexOutOfBoundsException, BadLocationException {
 	    
 	     String indexPath = "indexStitch";
 	     String dbPath = "./chemical.sources.v5.0a.tsv";//"./drugbank.txt";
