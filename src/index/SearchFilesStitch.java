@@ -95,6 +95,7 @@ public class SearchFilesStitch {
    * is executed another time and all hits are collected.
    *
    */
+  
   public static void doPagingSearch(BufferedReader in, IndexSearcher searcher, Query query,
                                      int hitsPerPage, boolean raw, boolean interactive) throws IOException {
  
@@ -129,7 +130,7 @@ public class SearchFilesStitch {
         }
 
         Document doc = searcher.doc(hits[i].doc);
- String id = doc.get("A");
+        String id = doc.get("A");
         
         if (id != null) {
           System.out.println((i+1) + ". " + id);
@@ -141,10 +142,16 @@ public class SearchFilesStitch {
             System.out.println("   name: " + doc.get("D"));
           }
           
+          String med = doc.get("D");
+          
+          if (med != null) {
+            System.out.println("   med: " + doc.get("C"));
+          }
+          
           ArrayList<String> supplierNames = new ArrayList<String>();
           supplierNames.add(id);
           supplierNames.add(name);
-
+          supplierNames.add(med);
           Resultlist.add(supplierNames);
           
           
