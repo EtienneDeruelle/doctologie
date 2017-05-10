@@ -41,27 +41,6 @@ public class MainSearch {
 	
 	private static MainWindow window ;
 	
-	public static void main2(String request) throws Exception {
-		
-		
-		SearchFilesATC SearchATC = null  ;
-		SearchFilesObo SearchObo = null ;
-		SearchFilesOmim SearchOmim = null ;
-		SearchFilesStitch SearchStitch = null ;
-		
-		ArrayList<ArrayList<String>> ResultlistObo = new ArrayList<ArrayList<String>>();
-		
-		SearchObo.main2(request);
-		ResultlistObo = SearchObo.getResultlist();
-		
-		System.out.println(ResultlistObo);
-		//SearchOmim.main2(line);
-		//SearchObo.main2(line);
-		//SearchATC.main2(line);
-		//SearchStitch.main2(line);
-		
-	}
-	
 	public static DiseasesCollection searchDiseaseBySign(String request){
 		ArrayList<String> diseasesOrphadata = new ArrayList<String>();
 		ArrayList<ArrayList<String>> diseasesHPO = new ArrayList<ArrayList<String>>();
@@ -81,11 +60,14 @@ public class MainSearch {
 		try {
 			SearchFilesObo.main2(request);
 			diseasesHPO = SearchFilesObo.getResultlist();
+			System.out.println("->->->->->"+diseasesHPO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		ArrayList<String> diseasesHPOClean = new ArrayList<String>();
+		System.out.println("HPO   :  "+diseasesHPOClean);
 		for(int i = 0 ; i < diseasesHPO.size() ; i++){
+			System.out.println(diseasesHPO);
 			if(!diseasesHPOClean.contains(diseasesHPO.get(i).get(0))){
 				diseasesHPOClean.add(diseasesHPO.get(i).get(0));
 			}
@@ -93,15 +75,19 @@ public class MainSearch {
 
 		// HPO_annotations
 		ArrayList<String> listIdDiseases = new ArrayList<String>();
+		
 		for(int i = 0 ; i < diseasesHPOClean.size() ; i++){
 			listIdDiseases.addAll(SearchHPO_Annotation.getIdDiseaseByIdSign("HP:"+diseasesHPOClean.get(i)));
 		}
-		
+		System.out.println("HPO ANNOTATIONS : "+listIdDiseases);
 		// OMIM
 		ArrayList<ArrayList<String>> listDiseases = new ArrayList<ArrayList<String>>();
+		System.out.println("OMIM listDisease : "+listDiseases);
 		for(int i = 0 ; i<listIdDiseases.size() ; i++){
 			try {
+				System.out.println("////////////////////////// : ");
 				SearchFilesOmim.main2(listIdDiseases.get(i));
+				System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -109,6 +95,7 @@ public class MainSearch {
 		}
 		
 		ArrayList<String> diseasesOmim = new ArrayList<String>();
+		System.out.println("OMIM   diseasesOMIM   : "+diseasesOmim);
 		for(int i = 0 ; i< listDiseases.size() ; i++){
 			diseasesOmim.add(listDiseases.get(i).get(0));
 		}

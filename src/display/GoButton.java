@@ -26,7 +26,7 @@ public class GoButton extends JButton {
 					//new SearchWindow(TopPanel.textField.getText());
 					System.out.println(TopPanel.textField.getText());
 					try {
-						MainSearch.main2(TopPanel.textField.getText());
+						//MainSearch.main2(TopPanel.textField.getText());
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

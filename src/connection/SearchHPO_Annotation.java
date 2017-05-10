@@ -30,10 +30,12 @@ public class SearchHPO_Annotation {
 	//à tester
 	public static ArrayList<String> getIdDiseaseByIdSign(String idSign){
 		Connection co = ConnectionSQLite.getConnectionSQLite();
-		ArrayList<String> listIdDisease = new ArrayList<String>();
+		ArrayList<String> listIdDisease = null;
+		listIdDisease= new ArrayList<String>();
 		try {
 			Statement stmt = co.createStatement();
-			ResultSet res = stmt.executeQuery("SELECT DISTINCT disease_id FROM phenotype_annotation WHERE sign_id='"+idSign+"';");
+			ResultSet res = null;
+			res = stmt.executeQuery("SELECT DISTINCT disease_id FROM phenotype_annotation WHERE sign_id='"+idSign+"';");
 			while(res.next()){
 				listIdDisease.add(res.getString(1));
 			}
