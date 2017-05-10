@@ -60,10 +60,10 @@ public class IndexFilesStitch {
 	 * @throws IOException 
 	 * @throws BiffException 
 	 * @throws IndexOutOfBoundsException */
-	   public static void main2(String[] args) throws IOException, IndexOutOfBoundsException, BadLocationException {
+	   public static void main(String[] args) throws IOException, IndexOutOfBoundsException, BadLocationException {
 	    
 	     String indexPath = "indexStitch";
-	     String dbPath = "./chemical.sources.v5.0a.xls";//"./drugbank.txt";
+	     String dbPath = "./chemical.sources.v5.0a.tsv";//"./drugbank.txt";
 
 
 	     //Sheet contentSheet = Workbook.getWorkbook(new File(filePath)).getSheet(0);
@@ -132,7 +132,7 @@ public class IndexFilesStitch {
 	   if((line.startsWith("CI"))){
 		   //System.out.println(line);
 		   if (line.contains("ATC")) {
-			   //System.out.println(line);
+			   System.out.println(line);
 	           doc = new Document();
 	           String id = "";
 	           id=line.substring(4, 12);
@@ -145,8 +145,15 @@ public class IndexFilesStitch {
 		   if (line.contains("ATC")) {
 	    	   String name = "";
 			   name=line.substring(30,line.length());
-			   System.out.println(name);
+			   //System.out.println(name);
 	           doc.add(new TextField("D", name, Field.Store.YES));
+	           
+	           String med = "";
+			   med=line.substring(17,line.length()-12);
+			   System.out.println(med);
+	           doc.add(new TextField("C", med, Field.Store.YES));
+	           
+	           
 	           writer.addDocument(doc);
 		   }
          
