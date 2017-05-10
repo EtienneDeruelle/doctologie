@@ -43,6 +43,8 @@ public class SearchFilesObo {
     String queryString = request;
     int hitsPerPage = 100;
     
+    System.out.println("Query :"+ queryString.toString());
+    
     IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
     IndexSearcher searcher = new IndexSearcher(reader);
     Analyzer analyzer = new StandardAnalyzer();
@@ -80,7 +82,7 @@ public class SearchFilesObo {
         Date end = new Date();
         System.out.println("Time: "+(end.getTime()-start.getTime())+"ms");
       }
-
+      System.out.println("Query avant recherche :"+ query.toString());
       doPagingSearch(in, searcher, query, hitsPerPage, raw, queries == null && queryString == null);
 
       if (queryString != null) {
