@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -29,7 +30,8 @@ public class TopPanel extends JPanel {
 	private ButTrans TransButG = new ButTrans();
 	private ButTrans TransButD = new ButTrans();
     static JTextField textField = new JTextField();
-    static ArrayList<JButton> textButton = new ArrayList<JButton>();
+    static ArrayList<JButton> textButtonGeneticalDisease = new ArrayList<JButton>();
+    static ArrayList<JButton> textButtonRareDisease = new ArrayList<JButton>();
 	
 	public TopPanel() {
 		this.setLayout(new BorderLayout());
@@ -59,23 +61,51 @@ public class TopPanel extends JPanel {
 	                    	try {
 								//MainSearch.main2(TopPanel.textField.getText());
 								
-	                    		MainWindow.getJPT().add(textButton);
-	                    		textLabel.setText("ifdhuighfiughufdhgiuhdfuh");
+	                    		//MainWindow.getJPT().add(textButton);
+	                    		//textLabel.setText("ifdhuighfiughufdhgiuhdfuh");
 	                    		
-	                    		DiseasesCollection diseases = MainSearch.searchDiseaseBySign(TopPanel2.textField.getText());
+	                    		DiseasesCollection diseases = MainSearch.searchDiseaseBySign(TopPanel.textField.getText());
 	                    		
-	                    		String textTextAreaGeneticalDisease = "";
-	                    		String textTextAreaRareDiseases = "";
+	                    		GridLayout gDisease = new GridLayout(diseases.getGenteticalDiseases().size()+
+	                    				diseases.getRareDiseases().size(),1);
+	                    		BorderLayout layout = new BorderLayout();	
+	                    		MainWindow.getJPT().setLayout(layout);
+	                    		JPanel diseasePanel = new JPanel();
+	                    		diseasePanel.setLayout(gDisease);
+	                    		diseasePanel.set
+                    			MainWindow.getJPT().add(diseasePanel, BorderLayout.WEST);
+                    			
+	                    		JButton geneticalButton;
 	                    		for(int i = 0 ; i <  diseases.getGenteticalDiseases().size() ; i++)
 	                    		{
-	                    			textButton.get(i).setText(diseases.getGenteticalDiseases().get(i));
+	                    			geneticalButton = new JButton("");
+	                    			getTextButtonGeneticalDisease().add(geneticalButton);
+	                    			geneticalButton.setVisible(true);
+	                    			geneticalButton.setBorderPainted(false);
+	                    			geneticalButton.setContentAreaFilled(false);
+	                    			geneticalButton.setFocusPainted(false);
+	                    			geneticalButton.setText(diseases.getGenteticalDiseases().get(i));
+	                    			diseasePanel.add(geneticalButton);
 	                    			//textTextAreaGeneticalDisease += diseases.getGenteticalDiseases().get(i)+"\n";
 	                    		}
+	                    		
+	                    		System.out.println(diseases.getGenteticalDiseases().size());
+	                    		JButton rareButton;
 	                    		for(int i = 0 ; i <  diseases.getRareDiseases().size() ; i++)
 	                    		{
 	                    			//textTextAreaRareDiseases += diseases.getRareDiseases().get(i)+"\n";
-	                    			textButton.get(i).setText(text);
+	                    			rareButton = new JButton("");
+	                    			getTextButtonRareDisease().add(rareButton);
+	                    			rareButton.setVisible(true);
+	                    			rareButton.setBorderPainted(false);
+	                    			rareButton.setContentAreaFilled(false);
+	                    			rareButton.setFocusPainted(false);
+	                    			rareButton.setText(diseases.getRareDiseases().get(i));
+	                    			diseasePanel.add(rareButton);
 	                    		}
+	                    		System.out.println(diseases.getRareDiseases().size());
+	                    		diseasePanel.setVisible(true);
+	                    		
 							} catch (Exception e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -105,5 +135,15 @@ public class TopPanel extends JPanel {
 		east.add(TransButD, BorderLayout.CENTER);
 		east.setOpaque(false);
 		this.add(east,BorderLayout.EAST);
+	}
+	
+	public ArrayList<JButton> getTextButtonGeneticalDisease()
+	{
+		return textButtonGeneticalDisease;
+	}
+	
+	public ArrayList<JButton> getTextButtonRareDisease()
+	{
+		return textButtonRareDisease;
 	}
 }
