@@ -66,9 +66,12 @@ public class MainSearch {
 		ArrayList<String> diseasesOrphadata = new ArrayList<String>();
 		ArrayList<ArrayList<String>> diseasesHPO = new ArrayList<ArrayList<String>>();
 		
+		diseasesOrphadata.clear();
 		// Orphadata
 		ArrayList<String> signs = new ArrayList<String>();
-		String[] listSigns = request.split(";");
+		
+		String[] listSigns = null;
+		listSigns = request.split(";");
 		for (int i = 0 ; i<listSigns.length ; i++){
 			signs.add(listSigns[i]);
 		}

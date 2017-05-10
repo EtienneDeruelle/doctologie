@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.tools.DiagnosticCollector;
 
 import org.lightcouch.CouchDbClient;
+import org.omg.CosNaming.NamingContextExtPackage.AddressHelper;
 
 import connection.ConnectionCouchDB;
 import connection.ConnectionMySQL;
@@ -36,6 +37,9 @@ public class Main {
 		
 		
 		window = new MainWindow();
+		/*ArrayList<String> diseasesOrphadata = new ArrayList<String>();
+		diseasesOrphadata.add("cggvhgfhjg");
+		System.out.println(SearchCouchDB.getDiseaseBySign(diseasesOrphadata));*/
 	}
 
 }
