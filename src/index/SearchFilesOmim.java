@@ -29,12 +29,11 @@ public class SearchFilesOmim {
 	 
   private SearchFilesOmim() {}
   
-  static ArrayList<ArrayList<String>> Resultlist = new ArrayList<ArrayList<String>>();
-  static ScoreDoc[] hits = null ;
- 
+  static ArrayList<ArrayList<String>> Resultlist;
+
   /** Simple command-line based search demo. */
   public static void main2(String request) throws Exception {
-   
+	Resultlist = new ArrayList<ArrayList<String>>();
 
     String index = "indexOmim";
     String field = "TI";

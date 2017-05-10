@@ -27,11 +27,11 @@ public class SearchFilesStitch {
 
   private SearchFilesStitch() {}
 
-  static ArrayList<ArrayList<String>> Resultlist = new ArrayList<ArrayList<String>>();
-  
+  static ArrayList<ArrayList<String>> Resultlist ;
+ 
   /** Simple command-line based search demo. */
   public static void main2(String request)throws Exception {
-   
+	  
 
     String index = "indexStitch";
     String field = "A";
