@@ -22,6 +22,7 @@ public class MainWindow extends JFrame {
 	private TopPanel TopP = new TopPanel();
 	private JPanel JPG = new JPanel();
 	private JPanel JPD = new JPanel();
+	private static JPanel JPT = new JPanel();
 	//public JPDown JPDownie = new JPDown();
 	int y;
 	int x;
@@ -38,7 +39,7 @@ public class MainWindow extends JFrame {
 		this.setLayout(new BorderLayout());
 		JPG.setLayout(new BorderLayout());
 		JPD.setLayout(new BorderLayout());
-			
+		
 	    Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration());
 	    DisplayMode mode = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode();
 	    Rectangle bounds = new Rectangle();
@@ -48,9 +49,10 @@ public class MainWindow extends JFrame {
 	    bounds.height = mode.getHeight() - (insets.top + insets.bottom);
 	    
 		//System.out.println("Bounds :" + bounds.width);
-		
+	    
 		this.add(JPG, BorderLayout.NORTH);
 		this.add(JPD, BorderLayout.EAST);
+		this.add(JPT, BorderLayout.CENTER);
 		JPD.add(buttonwindow, BorderLayout.EAST);
 		JPG.add(TopP, BorderLayout.NORTH);
 		
@@ -78,6 +80,11 @@ public class MainWindow extends JFrame {
 	}
 	*/
 	
+	public static JPanel getJPT()
+	{
+		return JPT;
+	}
+
 	public ButtonWindow getButtonWindow() {
 		return buttonwindow;
 	}

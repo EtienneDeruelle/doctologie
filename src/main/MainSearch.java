@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.lightcouch.CouchDbClient;
 
@@ -120,6 +122,8 @@ public class MainSearch {
 			if(!diseasesOrphadataClean.contains(diseasesOrphadata.get(i)))
 				diseasesOrphadataClean.add(diseasesOrphadata.get(i));
 		}
+		//List<String> sublistOmim = diseasesOmimClean.subList(1, diseasesOmimClean.size()); Collections.sort(sublistOmim);
+		//List<String> sublistOrpha = diseasesOrphadataClean.subList(1, diseasesOrphadataClean.size()); Collections.sort(sublistOrpha);
 		DiseasesCollection dc = new DiseasesCollection(diseasesOmimClean,diseasesOrphadataClean);
 		return dc;
 	}
