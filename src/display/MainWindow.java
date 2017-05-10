@@ -1,7 +1,6 @@
 package display;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.DisplayMode;
 import java.awt.Insets;
 import java.awt.Rectangle;
@@ -12,21 +11,24 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
 public class MainWindow extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//static SearchResult searchResult;
 	private ButtonWindow buttonwindow = new ButtonWindow();
 	private TopPanel TopP = new TopPanel();
-	private JButton Inst = new JButton();
+
 	private JPanel JPG = new JPanel();
 	private JPanel JPD = new JPanel();
-	private ImageIcon MID = new ImageIcon("Images/MID.png");
-	private static JPanel JPT = new JPanel();
+	
+	private InstPanel JPT = new InstPanel();
 	//public JPDown JPDownie = new JPDown();
 	int y;
 	int x;
@@ -52,20 +54,15 @@ public class MainWindow extends JFrame {
 	    bounds.width = mode.getWidth() - (insets.left + insets.right);
 	    bounds.height = mode.getHeight() - (insets.top + insets.bottom);
 	    
-	    
-	    Inst.setIcon(MID);
-	    Inst.setBackground(new Color(0,0,0,1));							
-	    Inst.setBorderPainted(false);
-	    Inst.setContentAreaFilled(false);
-	    Inst.setFocusPainted(false);
 		//System.out.println("Bounds :" + bounds.width);
 	    
 		this.add(JPG, BorderLayout.NORTH);
 		this.add(JPD, BorderLayout.EAST);
 		this.add(JPT, BorderLayout.CENTER);
+		
+		
 		JPD.add(buttonwindow, BorderLayout.EAST);
 		JPG.add(TopP, BorderLayout.NORTH);
-		JPT.add(Inst);
 		
 		//this.add(YoutubeViewer.getBrowserPanel("https://www.youtube.com/embed/b3KUyPKbR7Q"), BorderLayout.CENTER); // displays the video
 		JPG.setOpaque(false);
@@ -90,11 +87,6 @@ public class MainWindow extends JFrame {
 		return searchResult;
 	}
 	*/
-	
-	public static JPanel getJPT()
-	{
-		return JPT;
-	}
 
 	public ButtonWindow getButtonWindow() {
 		return buttonwindow;
