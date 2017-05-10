@@ -31,7 +31,6 @@ public class TopPanel extends JPanel {
 	private ButTrans TransButG = new ButTrans();
 	private ButTrans TransButD = new ButTrans();
     static JTextField textField = new JTextField();
-    private JScrollPane scroll;
     //static ArrayList<JButton> textButtonGeneticalDisease = new ArrayList<JButton>();
     //static ArrayList<JButton> textButtonRareDisease = new ArrayList<JButton>();
 	
