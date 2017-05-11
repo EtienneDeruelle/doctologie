@@ -109,7 +109,7 @@ public class SearchFilesOmim {
  
     // Collect enough docs to show 5 pages
     TopDocs results = searcher.search(query, 5 * hitsPerPage);
-    hits = results.scoreDocs;
+    ScoreDoc[] hits = results.scoreDocs;
     
     int numTotalHits = results.totalHits;
     System.out.println(numTotalHits + " total matching documents");
