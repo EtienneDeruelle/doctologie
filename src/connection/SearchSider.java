@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 public class SearchSider {
 	
-		public static ArrayList<String> getIdStitchByIdSign(String idSign){
+		public static ArrayList<String> getIdStitchByIdSign(String sign){
 			Connection co = ConnectionMySQL.getConnectionMySQL();
 			ArrayList<String> listIdStitch = new ArrayList<String>();
 			try {
 				Statement stmt = co.createStatement();
-				ResultSet res = stmt.executeQuery("SELECT DISTINCT stitch_compound_id FROM meddra_all_indications WHERE cui='"+idSign+"';");
+				ResultSet res = stmt.executeQuery("SELECT DISTINCT stitch_compound_id FROM meddra_all_indications WHERE concept_name='"+sign+"';");
 				while(res.next()){
 					listIdStitch.add(res.getString(1));
 				}

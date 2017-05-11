@@ -35,7 +35,6 @@ public class Main {
 		
 		//MainSearch.searchDiseaseBySign("urine");
 		
-		
 		window = new MainWindow();
 		/*ArrayList<String> diseasesOrphadata = new ArrayList<String>();
 		diseasesOrphadata.add("cggvhgfhjg");

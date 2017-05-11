@@ -119,11 +119,12 @@ public class MainSearch {
 		for (int i = 0 ; i<listSigns.length ; i++){ // on boucle pour sur chaque symptomes afin d'en retirer les id de chaque symtpome
 			idStitch.addAll(SearchSider.getIdStitchByIdSign(listSigns[i])); // on va chercher les id associer aux symptomes
 		}// peut etre des redondance dans idStitch
-				
+		
+		
 		//Stitch
 		String request2 = "";
 		for( int i = 0 ; i < idStitch.size() ; i++){ // il faut retransformer pour obtenir une request dans la fonction pour aller chercher les id
-			request2=request2+idStitch.get(i)+" "; // on ajoute les idsymptomes dans une chaine de caractere separe par des espaces
+			request2=request2+idStitch.get(i).substring(4)+" "; // on ajoute les idsymptomes dans une chaine de caractere separe par des espaces
 		}
 		ArrayList<ArrayList<String>> listIdATC = new ArrayList<ArrayList<String>>();
 		try {
@@ -136,16 +137,21 @@ public class MainSearch {
 		//ATC
 		String request3 = "";
 		for( int i = 0 ; i < listIdATC.size() ; i++){ // il faut retransformer pour obtenir une request dans la fonction pour aller chercher les noms de medicaments
-			request3=request3+listIdATC.get(i).get(0)+" "; // on ajoute les idATC dans une chaine de caractere separe par des espaces
+			request3=request3+listIdATC.get(i).get(1)+" "; // on ajoute les idATC dans une chaine de caractere separe par des espaces
+			if(!listIdATC.get(i).get(1).equals(listIdATC.get(i).get(2))){
+				request3=request3+listIdATC.get(i).get(2)+" ";
+			}
+		}
+		for( int i = 0 ; i < listIdATC.size() ; i++){ // il faut retransformer pour obtenir une request dans la fonction pour aller chercher les noms de medicaments
+			request3=request3+listIdATC.get(i).get(2)+" "; // on ajoute les idATC dans une chaine de caractere separe par des espaces
 		}
 		ArrayList<ArrayList<String>> listDrug = new ArrayList<ArrayList<String>>();
 		try {
 			SearchFilesATC.main2(request3);// on va chercher les medoc dans ATC
-			listDrug = SearchFilesStitch.getResultlist(); // on les recupere dans une variable
+			listDrug = SearchFilesATC.getResultlist(); // on les recupere dans une variable
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		// on prepare le tableau de medoc pour le return
 		ArrayList<String> drugs = new ArrayList<String>();
 		for(int i = 0 ; i < listDrug.size() ; i++){// on recupere tout les nom de medicament pour les mettre dans un meme tableau
