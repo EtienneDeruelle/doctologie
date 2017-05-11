@@ -31,7 +31,7 @@ public class SearchFilesStitch {
  
   /** Simple command-line based search demo. */
   public static void main2(String request)throws Exception {
-	  
+	 Resultlist = new ArrayList<ArrayList<String>>();
 
     String index = "indexStitch";
     String field = "A";

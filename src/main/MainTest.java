@@ -57,11 +57,11 @@ public class MainTest {
 		//SearchOmim.main2("tyrosine");
 		
 		//SearchOmim.main2(line);
-		SearchObo.main2(line);
+		//SearchObo.main2(line);
 		//SearchATC.main2(line);
-		//SearchStitch.main2(line);
+		SearchStitch.main2(line);
 		
-		System.out.println("/////////////" + SearchObo.getResultlist().size() );
+		//System.out.println("/////////////" + SearchObo.getResultlist().size() );
 		
 		for(int i = 1; i <= SearchObo.getResultlist().size()-1; i++)
 		{
