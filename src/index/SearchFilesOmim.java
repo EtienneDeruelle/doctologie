@@ -210,14 +210,6 @@ public class SearchFilesOmim {
   }
 
 
-public static ScoreDoc[] getHits() {
-	return hits;
-}
-
-
-public static void setHits(ScoreDoc[] hits) {
-	SearchFilesOmim.hits = hits;
-}
 
 
 public static ArrayList<ArrayList<String>> getResultlist() {
