@@ -39,7 +39,7 @@ public class SearchFilesStitch {
     int repeat = 0;
     boolean raw = false;
     String queryString = request;
-    int hitsPerPage = 10;
+    int hitsPerPage = 100;
     
     IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
     IndexSearcher searcher = new IndexSearcher(reader);
