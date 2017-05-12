@@ -11,36 +11,30 @@ import com.google.gson.JsonObject;
 
 public class SearchCouchDB {
 	
-	private static ArrayList<JsonObject> allDocs = null;
 	
 	public static ArrayList<String> getDiseaseBySign(ArrayList<String> signs){
 		CouchDbClient co = ConnectionCouchDB.getConnectionCouchDB();
-		
 		ArrayList<String> selectedDiseases = new ArrayList<String>();
-		boolean disease = true;
-		for (JsonObject doc : allDocs){
-			disease = true;
-			for(int j = 0 ; j<signs.size() ; j++){
-				if(!doc.toString().contains(signs.get(j).toString())){
-					disease=false;
-					break;
+		String diseaseText = "";
+		
+		for( int i = 0 ; i<signs.size() ; i++ ){
+			ArrayList<JsonObject> allDocs = (ArrayList<JsonObject>) co.view("clinicalsigns/GetDiseaseByClinicalSign").startKey(signs.get(0)).endKey(signs.get(0)+"z").query(JsonObject.class);
+			for(JsonObject doc : allDocs){
+				if(doc.toString().contains(signs.get(i).toString())){
+					JsonElement je  = doc.get("value");
+					JsonObject docDisease = je.getAsJsonObject();
+					je = docDisease.get("disease");
+					docDisease = je.getAsJsonObject();
+					je = docDisease.get("Name");
+					docDisease = je.getAsJsonObject();
+					je = docDisease.get("text");
+					diseaseText = je.getAsString();
+					selectedDiseases.add(diseaseText);
 				}
-			}
-			if(disease){
-				JsonElement je  = doc.get("value");
-				JsonObject docDisease = je.getAsJsonObject();
-				je = docDisease.get("disease");
-				docDisease = je.getAsJsonObject();
-				je = docDisease.get("Name");
-				docDisease = je.getAsJsonObject();
-				je = docDisease.get("text");
-				String diseaseText = je.getAsString();
-				
-				selectedDiseases.add(diseaseText);
-				System.out.println(diseaseText);
 			}
 			
 		}
+
 		co.shutdown();		
 		return selectedDiseases;
 		
@@ -58,13 +52,6 @@ public class SearchCouchDB {
 		}
 	}
 	
-	public static ArrayList<JsonObject> getAllDocs(){
-		return allDocs;
-	}
-	
-	public static void setAllDocs(ArrayList<JsonObject> allDocsParam){
-		allDocs=allDocsParam;
-	}
 	
 	/**
 	 * InputStream in = connectionCouchDb.find("_design/diseases"); 

@@ -40,10 +40,7 @@ public class Main {
 		//MainSearch.searchDiseaseBySign("urine");
 		
 		window = new MainWindow();
-		if(SearchCouchDB.getAllDocs() == null){
-			CouchDbClient co = ConnectionCouchDB.getConnectionCouchDB();
-			SearchCouchDB.setAllDocs((ArrayList<JsonObject>) co.view("clinicalsigns/GetDiseaseByClinicalSign").query(JsonObject.class));		
-		}
+
 		TopPanel.getGBut().setBackground(new Color(50,205,50));
 		/*ArrayList<String> diseasesOrphadata = new ArrayList<String>();
 		diseasesOrphadata.add("cggvhgfhjg");
