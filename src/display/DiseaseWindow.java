@@ -1,5 +1,6 @@
 package display;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -14,6 +15,7 @@ import main.MainSearch;
 import business.DiseasesCollection;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 
 
@@ -59,6 +61,7 @@ public class DiseaseWindow extends JFrame {
 		this.setTitle("Doctologie");
 		this.setSize(950, 500);
 		this.setLocationRelativeTo(null);
+		this.setIconImage(new ImageIcon("Images/IconRed.jpg").getImage());
 		
 		JTextArea textAreaDisease = new JTextArea();
 		textAreaDisease.setBackground(new Color(0, 204, 0));
@@ -84,8 +87,9 @@ public class DiseaseWindow extends JFrame {
 		
 		
 		DiseasesCollection diseases = MainSearch.searchDiseaseBySign(TopPanel.textField.getText());
-		System.out.println(diseases);
-		System.out.println("TEXT FIELD : "+TopPanel.textField.getText());
+		//System.out.println(diseases);
+		//System.out.println("TEXT FIELD : "+TopPanel.textField.getText());
+		ArrayList<String> drugs = MainSearch.searchDrugBySign(TopPanel.textField.getText());
 		
 		
 		for(int i = 0 ; i <  diseases.getGenteticalDiseases().size() ; i++)
@@ -100,6 +104,13 @@ public class DiseaseWindow extends JFrame {
 		textAreaDisease.setText(getTextDiseaseGenetical()+getTextDiseaseRare());
 		//textAreaDisease.setText("pute");
 		
+		for(int i = 0 ; i < drugs.size() ; i++)
+		{
+			textDrug += drugs.get(i)+"\n";
+		}
+		textAreaDrugs.setText(textDrug);
+		textAreaDisease.setEnabled(false);
+		textAreaDrugs.setEnabled(false);
 		
 		this.setVisible(true);
 		

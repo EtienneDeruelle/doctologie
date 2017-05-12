@@ -13,7 +13,7 @@ public class SearchSider {
 			ArrayList<String> listIdStitch = new ArrayList<String>();
 			try {
 				Statement stmt = co.createStatement();
-				ResultSet res = stmt.executeQuery("SELECT DISTINCT stitch_compound_id FROM meddra_all_indications WHERE concept_name='"+sign+"';");
+				ResultSet res = stmt.executeQuery("SELECT DISTINCT stitch_compound_id FROM meddra_all_indications WHERE concept_name LIKE '%"+sign+"%';");
 				while(res.next()){
 					listIdStitch.add(res.getString(1));
 				}
