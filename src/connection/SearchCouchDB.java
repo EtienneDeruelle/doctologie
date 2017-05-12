@@ -11,10 +11,11 @@ import com.google.gson.JsonObject;
 
 public class SearchCouchDB {
 	
+	private static ArrayList<JsonObject> allDocs = null;
+	
 	public static ArrayList<String> getDiseaseBySign(ArrayList<String> signs){
 		CouchDbClient co = ConnectionCouchDB.getConnectionCouchDB();
-				
-		List<JsonObject> allDocs = co.view("clinicalsigns/GetDiseaseByClinicalSign").query(JsonObject.class);		
+		
 		ArrayList<String> selectedDiseases = new ArrayList<String>();
 		boolean disease = true;
 		for (JsonObject doc : allDocs){
@@ -55,7 +56,14 @@ public class SearchCouchDB {
 		{
 			System.out.println(doc);
 		}
-
+	}
+	
+	public static ArrayList<JsonObject> getAllDocs(){
+		return allDocs;
+	}
+	
+	public static void setAllDocs(ArrayList<JsonObject> allDocsParam){
+		allDocs=allDocsParam;
 	}
 	
 	/**

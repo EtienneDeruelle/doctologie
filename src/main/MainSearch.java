@@ -118,7 +118,7 @@ public class MainSearch {
 		String[] listSigns = request.split(";"); // on separe avec le separateur ";"
 		for (int i = 0 ; i<listSigns.length ; i++){ // on boucle pour sur chaque symptomes afin d'en retirer les id de chaque symtpome
 			idStitch.addAll(SearchSider.getIdStitchByIdSign(listSigns[i])); // on va chercher les id associer aux symptomes
-		}// peut etre des redondance dans idStitch
+		}
 		
 		
 		//Stitch
