@@ -8,6 +8,7 @@ import javax.swing.ScrollPaneConstants;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.JTextArea;
 
@@ -16,6 +17,8 @@ import business.DiseasesCollection;
 
 import java.awt.Color;
 import java.util.ArrayList;
+
+import javax.swing.JLabel;
 
 
 
@@ -111,6 +114,18 @@ public class DiseaseWindow extends JFrame {
 		textAreaDrugs.setText(textDrug);
 		textAreaDisease.setEnabled(false);
 		textAreaDrugs.setEnabled(false);
+		
+		Font police = new Font("Arial", Font.BOLD, 14);
+		
+		JLabel lblRareAndGenetical = new JLabel("Rare and genetical diseases : ");
+		lblRareAndGenetical.setFont(police);
+		lblRareAndGenetical.setBackground(new Color(0, 204, 0));
+		scroll.setColumnHeaderView(lblRareAndGenetical);		
+		
+		JLabel lblDrugs = new JLabel("Drugs : ");
+		lblDrugs.setFont(police);
+		lblDrugs.setBackground(new Color(0, 153, 0));
+		scroll2.setColumnHeaderView(lblDrugs);
 		
 		this.setVisible(true);
 		
