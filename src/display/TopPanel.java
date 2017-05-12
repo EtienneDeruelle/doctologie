@@ -27,7 +27,7 @@ import main.MainSearch;
 
 public class TopPanel extends JPanel {
 	MainSearch Searcher = null;
-	private GoButton GBut = new GoButton();
+	private static GoButton GBut = new GoButton();
 	private ButTrans TransButG = new ButTrans();
 	private ButTrans TransButD = new ButTrans();
     static JTextField textField = new JTextField();
@@ -92,6 +92,15 @@ public class TopPanel extends JPanel {
 		east.setOpaque(false);
 		this.add(east,BorderLayout.EAST);
 	}
+	
+	public static GoButton getGBut() {
+		return GBut;
+	}
+
+	public void setGBut(GoButton gBut) {
+		GBut = gBut;
+	}
+
 	
 	/*public ArrayList<JButton> getTextButtonGeneticalDisease()
 	{

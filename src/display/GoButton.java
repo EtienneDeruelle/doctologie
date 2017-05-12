@@ -17,7 +17,7 @@ public class GoButton extends JButton {
 	
 	public GoButton(){
 		super("GO");
-		this.setBackground(new Color(50,205,50));
+		this.setBackground(new Color(77,77,77));
 		this.setForeground(Color.BLACK);
 		this.setVisible(true);
 		

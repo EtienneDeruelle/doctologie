@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ import connection.SearchCouchDB;
 import connection.SearchHPO_Annotation;
 import connection.SearchSider;
 import display.MainWindow;
+import display.TopPanel;
 
 /*
 import connection.ConnectionSQLite;
@@ -42,6 +44,7 @@ public class Main {
 			CouchDbClient co = ConnectionCouchDB.getConnectionCouchDB();
 			SearchCouchDB.setAllDocs((ArrayList<JsonObject>) co.view("clinicalsigns/GetDiseaseByClinicalSign").query(JsonObject.class));		
 		}
+		TopPanel.getGBut().setBackground(new Color(50,205,50));
 		/*ArrayList<String> diseasesOrphadata = new ArrayList<String>();
 		diseasesOrphadata.add("cggvhgfhjg");
 		System.out.println(SearchCouchDB.getDiseaseBySign(diseasesOrphadata));*/
