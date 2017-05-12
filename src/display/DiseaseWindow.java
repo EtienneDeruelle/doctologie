@@ -2,12 +2,10 @@ package display;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.JTextArea;
@@ -60,6 +58,7 @@ public class DiseaseWindow extends JFrame {
 	}
 
 	public DiseaseWindow () {
+		getContentPane().setBackground(new Color(0, 204, 51));
 		
 		this.setTitle("Doctologie");
 		this.setSize(950, 500);
@@ -118,13 +117,14 @@ public class DiseaseWindow extends JFrame {
 		Font police = new Font("Arial", Font.BOLD, 14);
 		
 		JLabel lblRareAndGenetical = new JLabel("Rare and genetical diseases : ");
-		lblRareAndGenetical.setFont(police);
+		lblRareAndGenetical.setForeground(new Color(0, 0, 0));		
 		lblRareAndGenetical.setBackground(new Color(0, 204, 0));
+		lblRareAndGenetical.setFont(police);
 		scroll.setColumnHeaderView(lblRareAndGenetical);		
 		
 		JLabel lblDrugs = new JLabel("Drugs : ");
-		lblDrugs.setFont(police);
 		lblDrugs.setBackground(new Color(0, 153, 0));
+		lblDrugs.setFont(police);
 		scroll2.setColumnHeaderView(lblDrugs);
 		
 		this.setVisible(true);
