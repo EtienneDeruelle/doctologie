@@ -8,7 +8,12 @@ import java.util.ArrayList;
 
 public class SearchHPO_Annotation {
 	
-	// à tester
+	
+	/**
+	 * Search into HPO_annotations the id of signs possible for the id disease in param
+	 * @param idDisease is the id of the disease that we search the id of the signs possible
+	 * @return the id of the signs possible
+	 */
 	public static ArrayList<String> getIdSignByIdDisease(String idDisease){
 		Connection co = ConnectionSQLite.getConnectionSQLite();
 		ArrayList<String> listIdSign = new ArrayList<String>();
@@ -27,7 +32,11 @@ public class SearchHPO_Annotation {
 		return listIdSign;
 	}
 	
-	//à tester
+	/**
+	 * Search the id diseases possible for the id sign in param
+	 * @param idSign is the id of sign that we search the id diseases possible
+	 * @return the list of the id diseases possible
+	 */
 	public static ArrayList<String> getIdDiseaseByIdSign(String idSign){
 		Connection co = ConnectionSQLite.getConnectionSQLite();
 		ArrayList<String> listIdDisease = null;

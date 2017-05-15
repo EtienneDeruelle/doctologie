@@ -7,7 +7,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class SearchSider {
-	
+		
+		/**
+		 * Search the id of stitch file for the sign 
+		 * @param sign is the sign that we search the id
+		 * @return the id of the signs
+		 */
 		public static ArrayList<String> getIdStitchByIdSign(String sign){
 			Connection co = ConnectionMySQL.getConnectionMySQL();
 			ArrayList<String> listIdStitch = new ArrayList<String>();
@@ -20,7 +25,6 @@ public class SearchSider {
 				res.close();
 				stmt.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return listIdStitch;

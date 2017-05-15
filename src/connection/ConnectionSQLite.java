@@ -8,6 +8,10 @@ public class ConnectionSQLite {
 	
 	private static Connection co =null;
 	
+	/**
+	 * Make the connection with the SQLite file, HPO_annotations
+	 * @return SQLite connection 
+	 */
 	public static Connection getConnectionSQLite(){
 		if(co == null){
 		    try {

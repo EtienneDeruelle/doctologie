@@ -12,6 +12,11 @@ import com.google.gson.JsonObject;
 public class SearchCouchDB {
 	
 	
+	/**
+	 * Go search into Orphadata the diseases by the signs
+	 * @param signs is a list of signs
+	 * @return the list of disease
+	 */
 	public static ArrayList<String> getDiseaseBySign(ArrayList<String> signs){
 		CouchDbClient co = ConnectionCouchDB.getConnectionCouchDB();
 		ArrayList<String> selectedDiseases = new ArrayList<String>();
@@ -40,25 +45,5 @@ public class SearchCouchDB {
 		
 	}
 	
-	public static void findDoc(CouchDbClient connectionCouchDb) throws IOException
-	{
-		
-		System.out.println("all Docs");
-		List<JsonObject> allDocs = connectionCouchDb.view("_all_docs").query(JsonObject.class);
-		
-		for (JsonObject doc : allDocs)
-		{
-			System.out.println(doc);
-		}
-	}
-	
-	
-	/**
-	 * InputStream in = connectionCouchDb.find("_design/diseases"); 
-		// ..
-		while(in.read()!=-1)
-			System.out.println(in);
-		in.close(); // close stream
-	 */
 	
 }

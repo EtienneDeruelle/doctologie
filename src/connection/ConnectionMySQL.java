@@ -10,7 +10,10 @@ private static Connection co =null;
 private final static String login = "gmd-read" ;
 private final static String mdp = "esial" ;
 
-
+	/**
+	 *  Make the connection with the database Sider
+	 * @return MySQL database connection
+	 */
 	public static Connection getConnectionMySQL(){
 		if(co == null){
 		    try {
