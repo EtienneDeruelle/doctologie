@@ -34,13 +34,27 @@ import index.SearchFilesOmim;
 import index.SearchFilesStitch;
 
 
-
+/**
+ * This class allows to start the search on the different bases
+ * 
+ * @author utilisateur
+ *
+ */
 public class MainSearch {
 	
+	/**
+	 *  Constructor of the class MainSearch
+	 */
 	public MainSearch() {}
 	
 	private static MainWindow window ;
 	
+	/**
+	 * This class allows to launch a search for diseases with symptoms
+	 * 
+	 * @param request
+	 * @return a collection of rare and genetic diseases
+	 */
 	public static DiseasesCollection searchDiseaseBySign(String request){
 		ArrayList<String> diseasesOrphadata = new ArrayList<String>();
 		ArrayList<ArrayList<String>> diseasesHPO = new ArrayList<ArrayList<String>>();
@@ -50,7 +64,7 @@ public class MainSearch {
 		ArrayList<String> signs = new ArrayList<String>();
 		
 		String[] listSigns = null;
-		listSigns = request.split(";");
+		listSigns = request.split(";");//Allows to take all the synonyms that the user to enter
 		for (int i = 0 ; i<listSigns.length ; i++){
 			signs.add(listSigns[i]);
 		}
@@ -58,14 +72,15 @@ public class MainSearch {
 		
 		// HPO
 		try {
-			SearchFilesObo.main2(request);
-			diseasesHPO = SearchFilesObo.getResultlist();
+			SearchFilesObo.main2(request);//Allows to make a search in the files of Obo
+			diseasesHPO = SearchFilesObo.getResultlist();//Retrieves the data from Obo
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		ArrayList<String> diseasesHPOClean = new ArrayList<String>();
 		for(int i = 0 ; i < diseasesHPO.size() ; i++){
-			System.out.println(diseasesHPO);
+			//System.out.println(diseasesHPO);
+			//Removing duplicates
 			if(!diseasesHPOClean.contains(diseasesHPO.get(i).get(0))){
 				diseasesHPOClean.add(diseasesHPO.get(i).get(0));
 			}
@@ -82,25 +97,27 @@ public class MainSearch {
 		ArrayList<ArrayList<String>> listDiseases = new ArrayList<ArrayList<String>>();
 		for(int i = 0 ; i<listIdDiseases.size() ; i++){
 			try {
-				SearchFilesOmim.main2(listIdDiseases.get(i));
+				SearchFilesOmim.main2(listIdDiseases.get(i));//Allows to make a search in the files of Omim
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			listDiseases.addAll(SearchFilesOmim.getResultlist());
+			listDiseases.addAll(SearchFilesOmim.getResultlist());//	Retrieves the result of the search by Omim
 		}
 		
 		ArrayList<String> diseasesOmim = new ArrayList<String>();
 		for(int i = 0 ; i< listDiseases.size() ; i++){
-			diseasesOmim.add(listDiseases.get(i).get(0));
+			diseasesOmim.add(listDiseases.get(i).get(0));//Fill the Omim Diseases Chart
 		}
 		ArrayList<String> diseasesOmimClean = new ArrayList<String>();
 		ArrayList<String> diseasesOrphadataClean = new ArrayList<String>();
 		
+		//This loop allows to remove the redundancies of the results found in Omim
 		for(int i = 0; i<diseasesOmim.size(); i++)
 		{
 			if(!diseasesOmimClean.contains(diseasesOmim.get(i)))
 				diseasesOmimClean.add(diseasesOmim.get(i));
 		}
+		//This loop allows to remove the redundancies of the results found in Orphadatabase
 		for(int i = 0; i<diseasesOrphadata.size(); i++)
 		{
 			if(!diseasesOrphadataClean.contains(diseasesOrphadata.get(i)))
@@ -111,50 +128,56 @@ public class MainSearch {
 		return dc;
 	}
 	
+	/**
+	 * This class allows to launch a search for drug with symptoms
+	 * 
+	 * @param request
+	 * @return returns medications
+	 */
 	public static ArrayList<String> searchDrugBySign(String request){
 		
 		// Sider
-		ArrayList<String> idStitch = new ArrayList<String>(); // structure pour transformer request en tableau de String
-		String[] listSigns = request.split(";"); // on separe avec le separateur ";"
-		for (int i = 0 ; i<listSigns.length ; i++){ // on boucle pour sur chaque symptomes afin d'en retirer les id de chaque symtpome
-			idStitch.addAll(SearchSider.getIdStitchByIdSign(listSigns[i])); // on va chercher les id associer aux symptomes
+		ArrayList<String> idStitch = new ArrayList<String>(); // Structure to transform request into a String array
+		String[] listSigns = request.split(";"); // We separate with the separator ";"
+		for (int i = 0 ; i<listSigns.length ; i++){ // We loop for on each symptom in order to remove the id of each symtpome
+			idStitch.addAll(SearchSider.getIdStitchByIdSign(listSigns[i])); // We will look for id to associate symptoms
 		}
 		
 		
 		//Stitch
 		String request2 = "";
-		for( int i = 0 ; i < idStitch.size() ; i++){ // il faut retransformer pour obtenir une request dans la fonction pour aller chercher les id
-			request2=request2+idStitch.get(i).substring(4)+" "; // on ajoute les idsymptomes dans une chaine de caractere separe par des espaces
+		for( int i = 0 ; i < idStitch.size() ; i++){ // it is necessary to re-transform to obtain a request in the function to fetch the id
+			request2=request2+idStitch.get(i).substring(4)+" "; // We add the idsymptoms in a character string separated by spaces
 		}
 		ArrayList<ArrayList<String>> listIdATC = new ArrayList<ArrayList<String>>();
 		try {
-			SearchFilesStitch.main2(request2);// on va chercher les idATC dans Stitch
-			listIdATC = SearchFilesStitch.getResultlist(); // on les recupere dans une variable
+			SearchFilesStitch.main2(request2);// We will look for idATC in Stitch
+			listIdATC = SearchFilesStitch.getResultlist(); // They are recovered into a variable
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		//ATC
 		String request3 = "";
-		for( int i = 0 ; i < listIdATC.size() ; i++){ // il faut retransformer pour obtenir une request dans la fonction pour aller chercher les noms de medicaments
-			request3=request3+listIdATC.get(i).get(1)+" "; // on ajoute les idATC dans une chaine de caractere separe par des espaces
+		for( int i = 0 ; i < listIdATC.size() ; i++){ // It is necessary to re-transform to obtain a request in the function to fetch the names of drugs
+			request3=request3+listIdATC.get(i).get(1)+" "; // We add the idATC in a string of characters separated by spaces
 			if(!listIdATC.get(i).get(1).equals(listIdATC.get(i).get(2))){
 				request3=request3+listIdATC.get(i).get(2)+" ";
 			}
 		}
-		for( int i = 0 ; i < listIdATC.size() ; i++){ // il faut retransformer pour obtenir une request dans la fonction pour aller chercher les noms de medicaments
-			request3=request3+listIdATC.get(i).get(2)+" "; // on ajoute les idATC dans une chaine de caractere separe par des espaces
+		for( int i = 0 ; i < listIdATC.size() ; i++){ // It is necessary to re-transform to obtain a request in the function to fetch the names of drugs
+			request3=request3+listIdATC.get(i).get(2)+" "; // We add the idATC into a string of characters separated by spaces
 		}
 		ArrayList<ArrayList<String>> listDrug = new ArrayList<ArrayList<String>>();
 		try {
-			SearchFilesATC.main2(request3);// on va chercher les medoc dans ATC
-			listDrug = SearchFilesATC.getResultlist(); // on les recupere dans une variable
+			SearchFilesATC.main2(request3);// We will look for the drugs in ATC
+			listDrug = SearchFilesATC.getResultlist(); // They are recovered in a variable
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// on prepare le tableau de medoc pour le return
+		// We prepare the table of drugs for the return
 		ArrayList<String> drugs = new ArrayList<String>();
-		for(int i = 0 ; i < listDrug.size() ; i++){// on recupere tout les nom de medicament pour les mettre dans un meme tableau
+		for(int i = 0 ; i < listDrug.size() ; i++){// We recover all the name of drugs to put them in a same table
 			drugs.add(listDrug.get(i).get(1));
 		}
 		

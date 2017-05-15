@@ -27,36 +27,72 @@ public class DiseaseWindow extends JFrame {
 	private String textDiseaseRare = "";
 	private String textDrug = "";
 	
+	/**
+	 * Allows the retrieval the text of genetic diseases
+	 *  
+	 * @return the text of genetical diseases
+	 */
 	public String getTextDiseaseGenetical()
 	{
 		return textDiseaseGenetical;
 	}
 
+	/**
+	 * Allows to modify the text of genetic diseases
+	 * 
+	 * @param textDiseaseGenetical
+	 */
 	public void setTextDiseaseGenetical(String textDiseaseGenetical)
 	{
 		this.textDiseaseGenetical = textDiseaseGenetical;
 	}
 
+	/**
+	 * Allows the retrieval the text of genetic diseases
+	 * 
+	 * @return the text of genetical diseases
+	 */
 	public String getTextDiseaseRare()
 	{
 		return textDiseaseRare;
 	}
 
+	/**
+	 * v
+	 * 
+	 * @param textDiseaseRare
+	 */
 	public void setTextDiseaseRare(String textDiseaseRare)
 	{
 		this.textDiseaseRare = textDiseaseRare;
 	}
 
+	/**
+	 * Allows the retrieval the text of drugs
+	 * 
+	 * @return the text of drugs
+	 */
 	public String getTextDrug()
 	{
 		return textDrug;
 	}
 
+	/**
+	 * Allows to modify the text of genetic diseases
+	 * 
+	 * @param textDrug
+	 */
 	public void setTextDrug(String textDrug)
 	{
 		this.textDrug = textDrug;
 	}
 
+	/**
+	 * 
+	 * This class allows to display the graphical interface with the results
+	 * of each parts: drugs, rara diseases and genetic diseases
+	 * 
+	 */
 	public DiseaseWindow () {		
 		this.setTitle("Doctologie");
 		this.setSize(1000, 600);
@@ -76,7 +112,6 @@ public class DiseaseWindow extends JFrame {
 		textAreaDrugs.setForeground(Color.WHITE);
 		textAreaDrugs.setColumns(30);
 		getContentPane().add(textAreaDrugs, BorderLayout.EAST);
-		//textAreaDrugs.setText("test");
 		
 		JTextArea textAreaGenetical = new JTextArea();
 		textAreaGenetical.setBackground(new Color(51, 204, 51));
@@ -98,8 +133,7 @@ public class DiseaseWindow extends JFrame {
 		
 		
 		DiseasesCollection diseases = MainSearch.searchDiseaseBySign(TopPanel.textField.getText());
-		//System.out.println(diseases);
-		//System.out.println("TEXT FIELD : "+TopPanel.textField.getText());
+		
 		ArrayList<String> drugs = MainSearch.searchDrugBySign(TopPanel.textField.getText());
 		
 		
