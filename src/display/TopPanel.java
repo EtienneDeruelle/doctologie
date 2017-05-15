@@ -42,7 +42,7 @@ public class TopPanel extends JPanel {
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int x  = (int)dimension.getWidth();
 		//System.out.println(x/6);
-		textField.setColumns(x/30);					 //On lui donne un nombre de colonnes à afficher
+		textField.setColumns(x/30);					 
 		textField.setBackground(Color.WHITE);
 		Font police = new Font("Arial", Font.BOLD, 14);
 		textField.setFont(police);

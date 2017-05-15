@@ -18,16 +18,16 @@ import index.IndexFilesStitch;
 @SuppressWarnings("serial")
 public class ButtonIndex extends JButton {
 	
-	private ImageIcon icon = new ImageIcon("Images/DL.png"); 			//On va chercher l'image (on peut noter que si il ne la trouve pas il ne renvoie pas d'erreur, plut�t �trange)
+	private ImageIcon icon = new ImageIcon("Images/DL.png"); 			
 	private static IndexFilesATC IndexATC ;
 	private static IndexFilesObo IndexObo ;
 	private static IndexFilesOmim IndexOmim ;
 	private static IndexFilesStitch IndexStitch ;
 	
 	public ButtonIndex(){
-		super();														//le super constructeur	
-		this.setIcon(this.icon);												//Mise en place de l'icone
-		this.setBackground(new Color(0,0,0,1));							//g�re la transparence du bouton (en r�alit� noir avec visiblit� 0 xD)
+		super();														
+		this.setIcon(this.icon);											
+		this.setBackground(new Color(0,0,0,1));							
 		this.setBorderPainted(false);
 		this.setContentAreaFilled(false);
 		this.setFocusPainted(false);
