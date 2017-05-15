@@ -139,18 +139,18 @@ public class SearchFilesObo {
         String id = doc.get("id");
         
         if (id != null) {
-          System.out.println((i+1) + ". " + id);
+         // System.out.println((i+1) + ". " + id);
           
           //System.out.println(TI);
           String name = doc.get("name");
           
           if (name != null) {
-            System.out.println("   name: " + doc.get("name"));
+        //    System.out.println("   name: " + doc.get("name"));
           }
           String def = doc.get("def");
          
           if (def != null) {
-              System.out.println("  def: " + doc.get("def"));
+         //     System.out.println("  def: " + doc.get("def"));
             }
           
           ArrayList<String> supplierNames = new ArrayList<String>();

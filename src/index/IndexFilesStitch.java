@@ -132,7 +132,7 @@ public class IndexFilesStitch {
 	   if((line.startsWith("CI"))){
 		   //System.out.println(line);
 		   if (line.contains("ATC")) {
-			   System.out.println(line);
+			   //System.out.println(line);
 	           doc = new Document();
 	           String id = "";
 	           id=line.substring(4, 12);
@@ -150,7 +150,7 @@ public class IndexFilesStitch {
 	           
 	           String med = "";
 			   med=line.substring(17,line.length()-12);
-			   System.out.println(med);
+			   //System.out.println(med);
 	           doc.add(new TextField("C", med, Field.Store.YES));
 	           
 	           

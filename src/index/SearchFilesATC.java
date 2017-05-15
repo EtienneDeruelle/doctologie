@@ -131,13 +131,13 @@ public class SearchFilesATC {
 String id = doc.get("id");
         
         if (id != null) {
-          System.out.println((i+1) + ". " + id);
+         // System.out.println((i+1) + ". " + id);
           
           //System.out.println(TI);
           String name = doc.get("name");
           
           if (name != null) {
-            System.out.println("   name: " + doc.get("name"));
+     //       System.out.println("   name: " + doc.get("name"));
           }
           
           ArrayList<String> supplierNames = new ArrayList<String>();

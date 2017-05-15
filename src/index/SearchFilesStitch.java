@@ -133,19 +133,19 @@ public class SearchFilesStitch {
         String id = doc.get("A");
         
         if (id != null) {
-          System.out.println((i+1) + ". " + id);
+        //  System.out.println((i+1) + ". " + id);
           
           //System.out.println(TI);
           String name = doc.get("D");
           
           if (name != null) {
-            System.out.println("   name: " + doc.get("D"));
+          //  System.out.println("   name: " + doc.get("D"));
           }
           
           String med = doc.get("D");
           
           if (med != null) {
-            System.out.println("   med: " + doc.get("C"));
+         //   System.out.println("   med: " + doc.get("C"));
           }
           
           ArrayList<String> supplierNames = new ArrayList<String>();
