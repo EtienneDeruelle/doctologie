@@ -140,16 +140,16 @@ public class SearchFilesOmim {
         Document doc = searcher.doc(hits[i].doc);
         String TI = doc.get("TI");
         if (TI != null) {
-          System.out.println((i+1) + ". " + TI);
+         // System.out.println((i+1) + ". " + TI);
           String DESC = doc.get("DESC");
-          System.out.println(DESC);
+          //System.out.println(DESC);
           if (DESC != null) {
-            System.out.println("   DESC: " + doc.get("DESC"));
+         //   System.out.println("   DESC: " + doc.get("DESC"));
           }
           String CS = doc.get("CS");
-          System.out.println(CS);
+         // System.out.println(CS);
           if (CS != null) {
-              System.out.println("   CS: " + doc.get("CS"));
+          //    System.out.println("   CS: " + doc.get("CS"));
             }
           ArrayList<String> supplierNames = new ArrayList<String>();
           supplierNames.add(TI);
