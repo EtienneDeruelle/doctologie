@@ -23,10 +23,7 @@ import connection.SearchSider;
 import display.MainWindow;
 import display.TopPanel;
 
-/*
-import connection.ConnectionSQLite;
-import sqlite.SQLiteRequest;
-*/
+
 
 
 
@@ -35,16 +32,10 @@ public class Main {
 	private static MainWindow window ;
 	
 	public static void main(String[] args) throws IOException {
-		//SQLiteRequest.requestByIdDisease(14);
-		
-		//MainSearch.searchDiseaseBySign("urine");
 		
 		window = new MainWindow();
 
 		TopPanel.getGBut().setBackground(new Color(50,205,50));
-		/*ArrayList<String> diseasesOrphadata = new ArrayList<String>();
-		diseasesOrphadata.add("cggvhgfhjg");
-		System.out.println(SearchCouchDB.getDiseaseBySign(diseasesOrphadata));*/
 	}
 
 }
